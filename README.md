@@ -10,15 +10,15 @@ Administrators receive an urgent-feedback email (low scores) and a weekly report
 | Repository | Responsibility |
 |---|---|
 | **feedback-infra** (this one) | Terraform for all infrastructure and general documentation |
-| [feedback-lambda-ingestao](../feedback-lambda-ingestao) | Receives the evaluation and writes it to DynamoDB |
-| [feedback-lambda-notificacao](../feedback-lambda-notificacao) | Notifies admins by email when urgency is high |
-| [feedback-lambda-relatorio](../feedback-lambda-relatorio) | Generates and sends the weekly report |
+| [feedback-lambda-ingestion](../feedback-lambda-ingestion) | Receives the evaluation and writes it to DynamoDB |
+| [feedback-lambda-notification](../feedback-lambda-notification) | Notifies admins by email when urgency is high |
+| [feedback-lambda-report](../feedback-lambda-report) | Generates and sends the weekly report |
 
 ## Conventions (task 0.5)
 
 - **AWS region:** `sa-east-1` (São Paulo)
 - **Name prefix:** `feedback-`
-- **Lambda functions:** `feedback-ingestao`, `feedback-notificacao`, `feedback-relatorio` — runtime **Java 21** (built with **Maven**), **AWS SDK v2**
+- **Lambda functions:** `feedback-ingestion`, `feedback-notification`, `feedback-report` — runtime **Java 21** (built with **Maven**), **AWS SDK v2**
 - **Cognito groups:** `students` and `admins`
 - **Default tags:** `Project=feedback`, `Environment=dev`, `ManagedBy=terraform`
 - **Pipeline authentication:** GitHub OIDC (no static AWS keys)
@@ -43,7 +43,6 @@ Index **`by-day`**: partition key `day`, sort key `submittedAt`.
 ## Structure (in progress)
 
 ```
-bootstrap/              # Terraform state bucket and OIDC setup — runs once, locally
 modules/lambda-function/
 dynamodb.tf  cognito.tf  api.tf  lambdas.tf
 ses.tf  scheduler.tf  monitoring.tf  iam.tf

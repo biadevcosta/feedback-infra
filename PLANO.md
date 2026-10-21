@@ -20,25 +20,26 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
 
 ### Fase 1 - Base Terraform
 
-- [ ] **1.1** Criar a pasta bootstrap: bucket S3 do state do Terraform (versionamento e criptografia)
-  - Validar: Bucket existe com versionamento ligado
+- [x] **1.1** HCP Terraform (plano gratuito) para guardar o state: criar conta e organização em app.terraform.io, workspace `feedback-infra` do tipo CLI-driven com Execution Mode **Local**, e rodar `terraform login`
+  - Validar: Workspace aparece no HCP Terraform e `terraform login` conclui
   - Depende de: 0.4, 0.5
-  - Obs: Roda uma única vez, com as suas credenciais
+  - Obs: Feito manualmente por você (conta pessoal). Execution Mode Local = o HCP só guarda o state; plan/apply rodam na sua máquina e no GitHub Actions, que acessa a AWS via OIDC
 
-- [ ] **1.2** Criar providers.tf, backend.tf e variables.tf apontando para o bucket
+- [x] **1.2** Criar providers.tf (com bloco `cloud` apontando para a organização e o workspace `feedback-infra`) e variables.tf
   - Validar: terraform init conclui sem erro
   - Depende de: 1.1
 
-- [ ] **1.3** Rodar terraform plan e apply com o ambiente vazio
-  - Validar: Arquivo de state aparece no bucket
+- [x] **1.3** Rodar terraform plan e apply com o ambiente vazio
+  - Validar: State aparece na aba States do workspace no HCP Terraform
   - Depende de: 1.2
+  - Obs: Validado pelo init e plan ("No changes"); o primeiro state é gravado no apply da 1.4
 
-- [ ] **1.4** Criar o provedor OIDC do GitHub na AWS (aws_iam_openid_connect_provider)
+- [x] **1.4** Criar o provedor OIDC do GitHub na AWS (aws_iam_openid_connect_provider)
   - Validar: Provedor aparece em IAM > Identity providers
   - Depende de: 1.3
   - Obs: Permite o GitHub Actions acessar a AWS sem chave fixa
 
-- [ ] **1.5** Criar a role OIDC da esteira da infra, restrita ao repositório feedback-infra
+- [x] **1.5** Criar a role OIDC da esteira da infra, restrita ao repositório feedback-infra
   - Validar: Política de confiança cita só este repositório
   - Depende de: 1.4
 
@@ -53,11 +54,11 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
 
 ### Fase 2 - Dados e identidade
 
-- [ ] **2.1** dynamodb.tf: tabela Evaluations (on-demand, KMS, recuperação PITR), índice by-day e Streams ligado
+- [ ] **2.1** dynamodb.tf: tabela Evaluations (on-demand, KMS com a chave aws/dynamodb, recuperação PITR), índice by-day e Streams ligado
   - Validar: Tabela visível no console com Streams e índice
   - Depende de: 1.7
 
-- [ ] **2.2** cognito.tf: User Pool (login por e-mail), app client sem secret (SRP) e grupos students e admins
+- [ ] **2.2** cognito.tf: User Pool (login por e-mail), app client sem secret (SRP), sem auto cadastro (só admin cria usuário) e grupos students e admins
   - Validar: User Pool criado com os 2 grupos
   - Depende de: 1.7
 
@@ -80,11 +81,11 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Validar: Função aparece no console
   - Depende de: 2.1, 3.1
 
-- [ ] **3.3** api.tf: HTTP API, JWT authorizer (Cognito), rota POST /evaluations e throttling
-  - Validar: Chamada sem token retorna 401
+- [ ] **3.3** api.tf: HTTP API, JWT authorizer (Cognito), rota POST /evaluations e throttling (1 req/s, rajada de 1, no stage $default)
+  - Validar: Chamada sem token retorna 401; várias chamadas seguidas retornam 429
   - Depende de: 2.2, 3.2
 
-- [ ] **3.4** Role OIDC do repositório feedback-lambda-ingestao, só com lambda:UpdateFunctionCode nesta função
+- [ ] **3.4** Role OIDC do repositório feedback-lambda-ingestion, só com lambda:UpdateFunctionCode nesta função
   - Validar: Política limitada ao ARN da função
   - Depende de: 1.4, 3.2
 
@@ -103,7 +104,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Validar: Gatilho ativo no console
   - Depende de: 2.1, 3.1, 4.1, 4.2
 
-- [ ] **4.4** Role OIDC do repositório feedback-lambda-notificacao, só com lambda:UpdateFunctionCode nesta função
+- [ ] **4.4** Role OIDC do repositório feedback-lambda-notification, só com lambda:UpdateFunctionCode nesta função
   - Validar: Política limitada ao ARN da função
   - Depende de: 1.4, 4.3
 
@@ -118,7 +119,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Validar: Função criada só com as permissões necessárias
   - Depende de: 2.1, 3.1, 4.1, 5.1
 
-- [ ] **5.3** Role OIDC do repositório feedback-lambda-relatorio, só com lambda:UpdateFunctionCode nesta função
+- [ ] **5.3** Role OIDC do repositório feedback-lambda-report, só com lambda:UpdateFunctionCode nesta função
   - Validar: Política limitada ao ARN da função
   - Depende de: 1.4, 5.2
 
@@ -136,7 +137,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Validar: Dashboard mostra os dados das funções
   - Depende de: 6.2
 
-- [ ] **6.4** Revisar o IAM (sem permissões com curinga além do necessário) e conferir a criptografia com KMS
+- [ ] **6.4** Revisar o IAM (sem permissões com curinga além do necessário) e conferir a criptografia com KMS (chave aws/dynamodb)
   - Validar: Checklist de segurança sem pendências
   - Depende de: 5.8
 

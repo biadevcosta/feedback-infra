@@ -22,3 +22,23 @@ output "evaluations_stream_arn" {
   description = "ARN of the evaluations table stream, consumed by the notification Lambda"
   value       = aws_dynamodb_table.evaluations.stream_arn
 }
+
+output "cognito_user_pool_id" {
+  description = "Cognito user pool with the students and admins groups"
+  value       = aws_cognito_user_pool.main.id
+}
+
+output "cognito_user_pool_arn" {
+  description = "ARN of the Cognito user pool, used by the notification Lambda (ListUsersInGroup)"
+  value       = aws_cognito_user_pool.main.arn
+}
+
+output "cognito_app_client_id" {
+  description = "Public app client used to log in and get the JWT"
+  value       = aws_cognito_user_pool_client.app.id
+}
+
+output "cognito_issuer_url" {
+  description = "JWT issuer, used by the API authorizer"
+  value       = "https://${aws_cognito_user_pool.main.endpoint}"
+}

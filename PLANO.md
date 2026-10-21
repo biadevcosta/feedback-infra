@@ -47,7 +47,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Validar: Pull Request de teste mostra o plan
   - Depende de: 1.5
 
-- [ ] **1.7** Workflow deploy.yml (merge na main): terraform apply
+- [x] **1.7** Workflow deploy.yml (merge na main): terraform apply
   - Validar: Merge de teste roda o apply e fica verde
   - Depende de: 1.6
   - Obs: Marco: esteira da infra funcionando

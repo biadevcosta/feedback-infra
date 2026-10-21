@@ -7,8 +7,9 @@ resource "aws_iam_openid_connect_provider" "github" {
 data "aws_caller_identity" "current" {}
 
 locals {
-  account_id     = data.aws_caller_identity.current.account_id
-  infra_repo_sub = "repo:${var.github_owner}/feedback-infra"
+  account_id = data.aws_caller_identity.current.account_id
+  # GitHub sends the immutable subject format: repo:OWNER@OWNER_ID/REPO@REPO_ID:...
+  infra_repo_sub = "repo:${var.github_owner}@${var.github_owner_id}/feedback-infra@${var.github_repo_ids["feedback-infra"]}"
 }
 
 # Trust policy shared by the infra pipeline roles; only the subject changes

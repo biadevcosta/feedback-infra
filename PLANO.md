@@ -9,7 +9,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
 
 ### Fase 0 - Preparação
 
-- [ ] **0.2** Ativar MFA no usuário raiz da AWS e criar um usuário administrador (ou IAM Identity Center) para o dia a dia
+- [x] **0.2** Ativar MFA no usuário raiz da AWS e criar um usuário administrador (ou IAM Identity Center) para o dia a dia
   - Validar: Login com o administrador funciona e o usuário raiz fica sem uso
   - Obs: Nunca usar o usuário raiz no dia a dia
 
@@ -53,11 +53,11 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
 
 ### Fase 2 - Dados e identidade
 
-- [ ] **2.1** dynamodb.tf: tabela Avaliacoes (on-demand, KMS, recuperação PITR), índice por-dia e Streams ligado
+- [ ] **2.1** dynamodb.tf: tabela Evaluations (on-demand, KMS, recuperação PITR), índice by-day e Streams ligado
   - Validar: Tabela visível no console com Streams e índice
   - Depende de: 1.7
 
-- [ ] **2.2** cognito.tf: User Pool (login por e-mail), app client sem secret (SRP) e grupos alunos e admins
+- [ ] **2.2** cognito.tf: User Pool (login por e-mail), app client sem secret (SRP) e grupos students e admins
   - Validar: User Pool criado com os 2 grupos
   - Depende de: 1.7
 
@@ -80,7 +80,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Validar: Função aparece no console
   - Depende de: 2.1, 3.1
 
-- [ ] **3.3** api.tf: HTTP API, JWT authorizer (Cognito), rota POST /avaliacao e throttling
+- [ ] **3.3** api.tf: HTTP API, JWT authorizer (Cognito), rota POST /evaluations e throttling
   - Validar: Chamada sem token retorna 401
   - Depende de: 2.2, 3.2
 
@@ -114,7 +114,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Depende de: 1.7
   - Obs: O cron do EventBridge é sempre em UTC
 
-- [ ] **5.2** Função de relatório com permissões Query no índice por-dia e ses:SendEmail
+- [ ] **5.2** Função de relatório com permissões Query no índice by-day e ses:SendEmail
   - Validar: Função criada só com as permissões necessárias
   - Depende de: 2.1, 3.1, 4.1, 5.1
 
@@ -166,11 +166,11 @@ Concluir junto com o time; marque aqui quando feitas.
 - [ ] **0.1** Criar a organização/conta no GitHub e os 4 repositórios públicos, cada um com README inicial e .gitignore
   - Validar: Os 4 repositórios aparecem abertos no GitHub
 
-- [ ] **0.4** Instalar Git, AWS CLI, Terraform e Python 3.12 e configurar as credenciais
+- [ ] **0.4** Instalar Git, AWS CLI, Terraform, Java 21 (JDK) e Maven e configurar as credenciais
   - Validar: aws sts get-caller-identity retorna a conta; terraform -version responde
   - Depende de: 0.2
 
-- [ ] **0.5** Definir convenções: região, prefixo de nomes (feedback-), tags e nomes das 3 funções
+- [x] **0.5** Definir convenções: região, prefixo de nomes (feedback-), tags e nomes das 3 funções
   - Validar: Convenções registradas no README do feedback-infra
   - Obs: Os repositórios das funções dependem destes nomes
 
@@ -178,11 +178,11 @@ Concluir junto com o time; marque aqui quando feitas.
   - Validar: Push direto na main é bloqueado
   - Depende de: 0.1
 
-- [ ] **3.8** Teste ponta a ponta: sem token (401), com token (grava) e nota fora do intervalo (400)
+- [ ] **3.8** Teste ponta a ponta: sem token (401), com token (grava) e score fora do intervalo (400)
   - Validar: Item aparece no DynamoDB
   - Depende de: 3.3, 3.7
 
-- [ ] **4.8** Teste ponta a ponta: enviar uma nota baixa e receber o e-mail de urgência
+- [ ] **4.8** Teste ponta a ponta: enviar um score baixo e receber o e-mail de urgência
   - Validar: E-mail chega aos admins
   - Depende de: 3.8, 4.7
 

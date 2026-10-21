@@ -1,56 +1,57 @@
 # feedback-infra
 
-Infraestrutura (Terraform) da **Plataforma de Feedback de Aulas** — Tech Challenge fase 4, arquitetura serverless na AWS.
+Infrastructure (Terraform) for the **Class Feedback Platform** — Tech Challenge phase 4, serverless architecture on AWS.
 
-O aluno envia `POST /avaliacao` com `{"descricao": string, "nota": int 0..10}`.
-Os administradores recebem e-mail de urgência (notas baixas) e um relatório semanal.
+Students submit `POST /evaluations` with `{"description": string, "score": int 0..10}`.
+Administrators receive an urgent-feedback email (low scores) and a weekly report.
 
-## Os 4 repositórios
+## The 4 repositories
 
-| Repositório | Responsabilidade |
+| Repository | Responsibility |
 |---|---|
-| **feedback-infra** (este) | Terraform de toda a infraestrutura e documentação geral |
-| [feedback-lambda-ingestao](../feedback-lambda-ingestao) | Recebe a avaliação e grava no DynamoDB |
-| [feedback-lambda-notificacao](../feedback-lambda-notificacao) | Avisa os admins por e-mail quando a urgência é alta |
-| [feedback-lambda-relatorio](../feedback-lambda-relatorio) | Gera e envia o relatório semanal |
+| **feedback-infra** (this one) | Terraform for all infrastructure and general documentation |
+| [feedback-lambda-ingestao](../feedback-lambda-ingestao) | Receives the evaluation and writes it to DynamoDB |
+| [feedback-lambda-notificacao](../feedback-lambda-notificacao) | Notifies admins by email when urgency is high |
+| [feedback-lambda-relatorio](../feedback-lambda-relatorio) | Generates and sends the weekly report |
 
-## Convenções (tarefa 0.5)
+## Conventions (task 0.5)
 
-- **Região AWS:** `sa-east-1` (São Paulo)
-- **Prefixo de nomes:** `feedback-`
-- **Funções Lambda:** `feedback-ingestao`, `feedback-notificacao`, `feedback-relatorio` — runtime **Python 3.12**
-- **Grupos do Cognito:** `alunos` e `admins`
-- **Tags padrão:** `Projeto=feedback`, `Ambiente=dev`, `ManagedBy=terraform`
-- **Autenticação da esteira:** OIDC do GitHub (sem chaves fixas da AWS)
+- **AWS region:** `sa-east-1` (São Paulo)
+- **Name prefix:** `feedback-`
+- **Lambda functions:** `feedback-ingestao`, `feedback-notificacao`, `feedback-relatorio` — runtime **Java 21** (built with **Maven**), **AWS SDK v2**
+- **Cognito groups:** `students` and `admins`
+- **Default tags:** `Project=feedback`, `Environment=dev`, `ManagedBy=terraform`
+- **Pipeline authentication:** GitHub OIDC (no static AWS keys)
+- **Billing:** this account has **no free tier**. Every `terraform plan` must call out the estimated cost of new resources; prefer on-demand/pay-per-use over anything with an idle hourly cost.
 
-## Contrato de dados
+## Data contract
 
-Tabela **`Avaliacoes`** — chave `avaliacaoId` (string, UUID).
+Table **`Evaluations`** — partition key `evaluationId` (string, UUID).
 
-| Atributo | Tipo | Descrição |
+| Attribute | Type | Description |
 |---|---|---|
-| `avaliacaoId` | string | UUID v4 |
-| `usuarioId` | string | `sub` do Cognito |
-| `descricao` | string | Texto da avaliação (máx. 1000 caracteres) |
-| `nota` | número | Inteiro de 0 a 10 |
-| `urgencia` | string | `alta` (0-3), `media` (4-6), `baixa` (7-10) |
-| `dataEnvio` | string | ISO 8601 em UTC |
-| `dia` | string | AAAA-MM-DD no horário de Brasília (UTC-3 fixo) |
+| `evaluationId` | string | UUID v4 |
+| `userId` | string | Cognito `sub` |
+| `description` | string | Evaluation text (max 1000 characters) |
+| `score` | number | Integer from 0 to 10 |
+| `urgency` | string | `high` (0-3), `medium` (4-6), `low` (7-10) |
+| `submittedAt` | string | ISO 8601, UTC |
+| `day` | string | YYYY-MM-DD, America/Sao_Paulo (fixed UTC-3) |
 
-Índice **`por-dia`**: chave de partição `dia`, chave de ordenação `dataEnvio`.
+Index **`by-day`**: partition key `day`, sort key `submittedAt`.
 
-## Estrutura (em construção)
+## Structure (in progress)
 
 ```
-bootstrap/              # bucket do state e OIDC — roda 1 vez, localmente
+bootstrap/              # Terraform state bucket and OIDC setup — runs once, locally
 modules/lambda-function/
 dynamodb.tf  cognito.tf  api.tf  lambdas.tf
 ses.tf  scheduler.tf  monitoring.tf  iam.tf
 providers.tf  variables.tf  outputs.tf
-.github/workflows/      # ci.yml e deploy.yml
-docs/                   # diagramas
+.github/workflows/      # ci.yml and deploy.yml
+docs/                   # diagrams
 ```
 
 ## Status
 
-Acompanhe o andamento em [PLANO.md](PLANO.md).
+Track progress in [PLANO.md](PLANO.md).

@@ -54,7 +54,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
 
 ### Fase 2 - Dados e identidade
 
-- [ ] **2.1** dynamodb.tf: tabela Evaluations (on-demand, KMS com a chave aws/dynamodb, recuperação PITR), índice by-day e Streams ligado
+- [x] **2.1** dynamodb.tf: tabela Evaluations (on-demand, KMS com a chave aws/dynamodb, recuperação PITR), índice by-day e Streams ligado
   - Validar: Tabela visível no console com Streams e índice
   - Depende de: 1.7
 

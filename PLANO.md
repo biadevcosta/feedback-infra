@@ -43,7 +43,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Validar: Política de confiança cita só este repositório
   - Depende de: 1.4
 
-- [ ] **1.6** Workflow ci.yml (Pull Request): terraform fmt, validate e plan
+- [x] **1.6** Workflow ci.yml (Pull Request): terraform fmt, validate e plan
   - Validar: Pull Request de teste mostra o plan
   - Depende de: 1.5
 

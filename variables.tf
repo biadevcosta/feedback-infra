@@ -1,0 +1,23 @@
+variable "aws_region" {
+  description = "AWS region for all resources"
+  type        = string
+  default     = "sa-east-1"
+}
+
+variable "project" {
+  description = "Project name, used as resource name prefix and Project tag"
+  type        = string
+  default     = "feedback"
+}
+
+variable "environment" {
+  description = "Environment name, used in the Environment tag"
+  type        = string
+  default     = "dev"
+}
+
+variable "github_owner" {
+  description = "GitHub user or organization that owns the repositories"
+  type        = string
+  default     = "biadevcosta"
+}

@@ -42,3 +42,13 @@ output "cognito_issuer_url" {
   description = "JWT issuer, used by the API authorizer"
   value       = "https://${aws_cognito_user_pool.main.endpoint}"
 }
+
+output "ingestion_function_name" {
+  description = "Name of the ingestion Lambda function"
+  value       = module.ingestion.function_name
+}
+
+output "ingestion_function_arn" {
+  description = "ARN of the ingestion Lambda function"
+  value       = module.ingestion.function_arn
+}

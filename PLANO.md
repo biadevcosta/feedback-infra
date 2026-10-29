@@ -72,7 +72,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
 
 ### Fase 3 - Ingestão
 
-- [ ] **3.1** Criar o módulo lambda-function (role, log group com retenção de 14 dias, código de exemplo e lifecycle ignore_changes no código)
+- [x] **3.1** Criar o módulo lambda-function (role, log group com retenção de 14 dias, código de exemplo e lifecycle ignore_changes no código)
   - Validar: Módulo passa no terraform validate
   - Depende de: 1.7
   - Obs: O código real vem do repositório de cada função; o Terraform só cria a função

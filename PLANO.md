@@ -66,7 +66,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Validar: Usuários aparecem nos grupos certos
   - Depende de: 2.2
 
-- [ ] **2.4** Validar o login pela CLI (aws cognito-idp initiate-auth)
+- [x] **2.4** Validar o login pela CLI (aws cognito-idp initiate-auth)
   - Validar: Comando devolve o ID token
   - Depende de: 2.3
 

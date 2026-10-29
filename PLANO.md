@@ -62,7 +62,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Validar: User Pool criado com os 2 grupos
   - Depende de: 1.7
 
-- [ ] **2.3** Criar usuários de teste (1 aluno e 1 admin) e colocá-los nos grupos
+- [x] **2.3** Criar usuários de teste (1 aluno e 1 admin) e colocá-los nos grupos
   - Validar: Usuários aparecem nos grupos certos
   - Depende de: 2.2
 

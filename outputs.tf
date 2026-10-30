@@ -62,3 +62,13 @@ output "notification_dlq_arn" {
   description = "ARN of the DLQ for failed notification Lambda invocations"
   value       = aws_sqs_queue.notification_dlq.arn
 }
+
+output "notification_function_name" {
+  description = "Name of the notification Lambda function"
+  value       = module.notification.function_name
+}
+
+output "notification_function_arn" {
+  description = "ARN of the notification Lambda function"
+  value       = module.notification.function_arn
+}

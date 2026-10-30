@@ -35,3 +35,13 @@ variable "github_repo_ids" {
     feedback-infra = 1427783940
   }
 }
+
+variable "ses_sender_email" {
+  description = "Verified SES sender address used as From for urgency alerts and the weekly report. No default on purpose: set it in a local terraform.tfvars (gitignored) or a GitHub Actions variable, never commit a real address."
+  type        = string
+}
+
+variable "admin_emails" {
+  description = "Admin email addresses that receive urgency alerts and the weekly report; each must be verified in SES while the account is in sandbox. No default on purpose, same reason as ses_sender_email."
+  type        = list(string)
+}

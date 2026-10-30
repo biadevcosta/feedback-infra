@@ -28,3 +28,9 @@ resource "aws_iam_role_policy" "ingestion_dynamodb" {
   role   = module.ingestion.role_name
   policy = data.aws_iam_policy_document.ingestion_dynamodb.json
 }
+
+# Failure destination for the notification function's Streams trigger (task 4.3):
+# an event the function can't process after retrying lands here instead of being lost
+resource "aws_sqs_queue" "notification_dlq" {
+  name = "${var.project}-notification-dlq"
+}

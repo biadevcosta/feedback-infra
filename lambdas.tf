@@ -8,7 +8,7 @@ module "ingestion" {
   description   = "Receives POST /evaluations and writes the evaluation to DynamoDB"
 
   # TODO: update to match the real class once feedback-lambda-ingestion defines it
-  handler = "com.feedback.ingestion.IngestionHandler::handleRequest"
+  handler = "com.feedback.ingestion.CreateEvaluationHandler::handleRequest"
 
   # Simple PutItem call: low memory and timeout are enough
   memory_size = 256

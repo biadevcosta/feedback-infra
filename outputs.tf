@@ -57,3 +57,8 @@ output "api_url" {
   description = "Base URL of the HTTP API (append /evaluations for POST)"
   value       = aws_apigatewayv2_stage.default.invoke_url
 }
+
+output "notification_dlq_arn" {
+  description = "ARN of the DLQ for failed notification Lambda invocations"
+  value       = aws_sqs_queue.notification_dlq.arn
+}

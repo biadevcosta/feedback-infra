@@ -52,3 +52,8 @@ output "ingestion_function_arn" {
   description = "ARN of the ingestion Lambda function"
   value       = module.ingestion.function_arn
 }
+
+output "api_url" {
+  description = "Base URL of the HTTP API (append /evaluations for POST)"
+  value       = aws_apigatewayv2_stage.default.invoke_url
+}

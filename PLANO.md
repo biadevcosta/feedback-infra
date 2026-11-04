@@ -13,10 +13,10 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Validar: Login com o administrador funciona e o usuário raiz fica sem uso
   - Obs: Nunca usar o usuário raiz no dia a dia
 
-- [ ] **0.3** Criar alerta de orçamento (AWS Budgets) com aviso por e-mail
+- [x] **0.3** Criar alerta de orçamento (AWS Budgets) com aviso por e-mail
   - Validar: Alerta aparece em Budgets e o e-mail de teste chega
   - Depende de: 0.2
-  - Obs: Importante: os créditos são limitados
+  - Obs: Importante: os créditos são limitados. Criado no console (fica fora do Terraform para sobreviver ao destroy): `feedback-monthly`, US$ 4/mês, alertas 50% e 80% reais e 100% previsto
 
 ### Fase 1 - Base Terraform
 

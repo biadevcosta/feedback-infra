@@ -58,7 +58,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Validar: Tabela visível no console com Streams e índice
   - Depende de: 1.7
 
-- [ ] **2.2** cognito.tf: User Pool (login por e-mail), app client sem secret (SRP), sem auto cadastro (só admin cria usuário) e grupos students e admins
+- [x] **2.2** cognito.tf: User Pool (login por e-mail), app client sem secret (SRP), sem auto cadastro (só admin cria usuário) e grupos students e admins
   - Validar: User Pool criado com os 2 grupos
   - Depende de: 1.7
 

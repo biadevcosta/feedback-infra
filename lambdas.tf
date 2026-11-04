@@ -13,6 +13,10 @@ module "ingestion" {
   # Simple PutItem call: low memory and timeout are enough
   memory_size = 256
   timeout     = 5
+
+  environment_variables = {
+    TABLE_NAME = aws_dynamodb_table.evaluations.name
+  }
 }
 
 # Only permission this function needs: write new evaluations to the table
@@ -47,6 +51,12 @@ module "notification" {
 
   memory_size = 256
   timeout     = 10
+
+  environment_variables = {
+    USER_POOL_ID      = aws_cognito_user_pool.main.id
+    ADMINS_GROUP_NAME = aws_cognito_user_group.admins.name
+    SENDER_EMAIL      = var.ses_sender_email
+  }
 }
 
 # Only INSERT events, and only when the new item's urgency is "high"
@@ -99,10 +109,14 @@ data "aws_iam_policy_document" "notification" {
     resources = [aws_cognito_user_pool.main.arn]
   }
 
-  # Send the urgency email from the verified sender identity
+  # Send the urgency email from the verified sender identity. In the SES sandbox
+  # the recipient identities are authorized too, so the admins are listed as well
   statement {
-    actions   = ["ses:SendEmail"]
-    resources = [aws_ses_email_identity.sender.arn]
+    actions = ["ses:SendEmail"]
+    resources = concat(
+      [aws_ses_email_identity.sender.arn],
+      [for identity in aws_ses_email_identity.admins : identity.arn],
+    )
   }
 
   # Lets the event source mapping deliver failed events to the DLQ

@@ -87,7 +87,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Depende de: 2.2, 3.2
   - Obs: Já aplicada; falta validar. Com rajada de 1, bastam 2 chamadas seguidas para o 429 (sem loop, por custo)
 
-- [ ] **3.4** Role OIDC do repositório feedback-lambda-ingestion, só com lambda:UpdateFunctionCode nesta função
+- [x] **3.4** Role OIDC do repositório feedback-lambda-ingestion, só com lambda:UpdateFunctionCode nesta função
   - Validar: Política limitada ao ARN da função
   - Depende de: 1.4, 3.2
 
@@ -106,7 +106,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Validar: Gatilho ativo no console
   - Depende de: 2.1, 3.1, 4.1, 4.2
 
-- [ ] **4.4** Role OIDC do repositório feedback-lambda-notification, só com lambda:UpdateFunctionCode nesta função
+- [x] **4.4** Role OIDC do repositório feedback-lambda-notification, só com lambda:UpdateFunctionCode nesta função
   - Validar: Política limitada ao ARN da função
   - Depende de: 1.4, 4.3
 
@@ -166,7 +166,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
 
 Concluir junto com o time; marque aqui quando feitas.
 
-- [ ] **0.1** Criar a organização/conta no GitHub e os 4 repositórios públicos, cada um com README inicial e .gitignore
+- [x] **0.1** Criar a organização/conta no GitHub e os 4 repositórios públicos, cada um com README inicial e .gitignore
   - Validar: Os 4 repositórios aparecem abertos no GitHub
 
 - [ ] **0.4** Instalar Git, AWS CLI, Terraform, Java 21 (JDK) e Maven e configurar as credenciais
@@ -177,9 +177,10 @@ Concluir junto com o time; marque aqui quando feitas.
   - Validar: Convenções registradas no README do feedback-infra
   - Obs: Os repositórios das funções dependem destes nomes
 
-- [ ] **0.6** Proteger a branch main dos 4 repositórios (Pull Request obrigatório)
+- [x] **0.6** Proteger a branch main dos 4 repositórios (Pull Request obrigatório)
   - Validar: Push direto na main é bloqueado
   - Depende de: 0.1
+  - Obs: Nos 3 repositórios de função, o check obrigatório da esteira entra quando o ci-cd.yml existir
 
 - [ ] **3.8** Teste ponta a ponta: sem token (401), com token (grava) e score fora do intervalo (400)
   - Validar: Item aparece no DynamoDB

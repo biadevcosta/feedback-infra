@@ -32,7 +32,10 @@ variable "github_repo_ids" {
   description = "Numeric IDs of the GitHub repositories, used in the immutable OIDC subject claim"
   type        = map(number)
   default = {
-    feedback-infra = 1427783940
+    feedback-infra               = 1427783940
+    feedback-lambda-ingestion    = 1445099064
+    feedback-lambda-notification = 1445099160
+    feedback-lambda-report       = 1445099258
   }
 }
 

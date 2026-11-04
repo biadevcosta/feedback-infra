@@ -106,3 +106,62 @@ resource "aws_iam_role_policy" "infra_apply" {
   role   = aws_iam_role.infra_apply.id
   policy = data.aws_iam_policy_document.infra_apply.json
 }
+
+# Function repository pipelines: each repository may only update its own function's code
+locals {
+  function_repos = {
+    feedback-lambda-ingestion    = module.ingestion.function_arn
+    feedback-lambda-notification = module.notification.function_arn
+  }
+}
+
+data "aws_iam_policy_document" "function_pipeline_trust" {
+  for_each = local.function_repos
+
+  statement {
+    actions = ["sts:AssumeRoleWithWebIdentity"]
+
+    principals {
+      type        = "Federated"
+      identifiers = [aws_iam_openid_connect_provider.github.arn]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "token.actions.githubusercontent.com:aud"
+      values   = ["sts.amazonaws.com"]
+    }
+
+    # Only the main branch of that repository, in the immutable subject format
+    condition {
+      test     = "StringEquals"
+      variable = "token.actions.githubusercontent.com:sub"
+      values   = ["repo:${var.github_owner}@${var.github_owner_id}/${each.key}@${var.github_repo_ids[each.key]}:ref:refs/heads/main"]
+    }
+  }
+}
+
+# e.g. feedback-github-lambda-ingestion
+resource "aws_iam_role" "function_pipeline" {
+  for_each = local.function_repos
+
+  name               = "${var.project}-github-${trimprefix(each.key, "${var.project}-")}"
+  assume_role_policy = data.aws_iam_policy_document.function_pipeline_trust[each.key].json
+}
+
+data "aws_iam_policy_document" "function_pipeline" {
+  for_each = local.function_repos
+
+  statement {
+    actions   = ["lambda:UpdateFunctionCode"]
+    resources = [each.value]
+  }
+}
+
+resource "aws_iam_role_policy" "function_pipeline" {
+  for_each = local.function_repos
+
+  name   = "update-function-code"
+  role   = aws_iam_role.function_pipeline[each.key].id
+  policy = data.aws_iam_policy_document.function_pipeline[each.key].json
+}

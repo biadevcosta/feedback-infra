@@ -13,11 +13,26 @@ concurrency:
   group: terraform-apply
   cancel-in-progress: false
 
+# SES addresses come from repository secrets (repo and logs are public, LGPD)
+env:
+  TF_VAR_ses_sender_email: ${{ secrets.SES_SENDER_EMAIL }}
+  TF_VAR_admin_emails: ${{ secrets.ADMIN_EMAILS }}
+
 jobs:
   apply:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash # explicit bash adds pipefail: a terraform error before "| tee" fails the step
     steps:
       - uses: actions/checkout@v7
+
+      # Secrets are masked only as whole strings; mask each address on its own too,
+      # since they show up individually in the plan output
+      - name: Mask emails
+        run: |
+          echo "::add-mask::$TF_VAR_ses_sender_email"
+          for e in $(jq -r '.[]' <<< "$TF_VAR_admin_emails"); do echo "::add-mask::$e"; done
 
       - uses: aws-actions/configure-aws-credentials@v6
         with:

@@ -34,8 +34,10 @@ resource "aws_dynamodb_table" "evaluations" {
       key_type       = "RANGE"
     }
 
+    # Both limits set: AWS returns 0 for an unset one, which caused a diff on every plan
     on_demand_throughput {
-      max_read_request_units = 5
+      max_read_request_units  = 5
+      max_write_request_units = 5
     }
   }
 

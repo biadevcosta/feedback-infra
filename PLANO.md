@@ -62,13 +62,14 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Validar: User Pool criado com os 2 grupos
   - Depende de: 1.7
 
-- [ ] **2.3** Criar usuários de teste (1 aluno e 1 admin) e colocá-los nos grupos
+- [x] **2.3** Criar usuários de teste (1 aluno e 1 admin) e colocá-los nos grupos
   - Validar: Usuários aparecem nos grupos certos
   - Depende de: 2.2
 
-- [ ] **2.4** Validar o login pela CLI (aws cognito-idp initiate-auth)
+- [ ] **2.4** Validar o login pela CLI (aws cognito-idp admin-initiate-auth, fluxo ADMIN_USER_PASSWORD_AUTH)
   - Validar: Comando devolve o ID token
   - Depende de: 2.3
+  - Obs: O app client não permite USER_PASSWORD_AUTH, por isso initiate-auth seria recusado
 
 ### Fase 3 - Ingestão
 
@@ -77,13 +78,14 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Depende de: 1.7
   - Obs: O código real vem do repositório de cada função; o Terraform só cria a função
 
-- [ ] **3.2** lambdas.tf: função de ingestão com permissão só de PutItem na tabela
+- [x] **3.2** lambdas.tf: função de ingestão com permissão só de PutItem na tabela
   - Validar: Função aparece no console
   - Depende de: 2.1, 3.1
 
 - [ ] **3.3** api.tf: HTTP API, JWT authorizer (Cognito), rota POST /evaluations e throttling (1 req/s, rajada de 1, no stage $default)
   - Validar: Chamada sem token retorna 401; várias chamadas seguidas retornam 429
   - Depende de: 2.2, 3.2
+  - Obs: Já aplicada; falta validar. Com rajada de 1, bastam 2 chamadas seguidas para o 429 (sem loop, por custo)
 
 - [ ] **3.4** Role OIDC do repositório feedback-lambda-ingestion, só com lambda:UpdateFunctionCode nesta função
   - Validar: Política limitada ao ARN da função
@@ -94,13 +96,13 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
 - [ ] **4.1** ses.tf: identidade do remetente e dos e-mails dos admins
   - Validar: Todos os e-mails aparecem como Verified no SES
   - Depende de: 1.7
-  - Obs: Cada pessoa precisa clicar no link de confirmação (conta em sandbox)
+  - Obs: Cada pessoa precisa clicar no link de confirmação (conta em sandbox). Identidades já criadas; falta a confirmação dos e-mails
 
-- [ ] **4.2** Fila SQS (DLQ) para falhas da notificação
+- [x] **4.2** Fila SQS (DLQ) para falhas da notificação
   - Validar: Fila criada
   - Depende de: 1.7
 
-- [ ] **4.3** Função de notificação com gatilho do Streams (só INSERT com urgência alta), DLQ e permissões ListUsersInGroup e ses:SendEmail
+- [x] **4.3** Função de notificação com gatilho do Streams (só INSERT com urgência alta), DLQ e permissões ListUsersInGroup e ses:SendEmail
   - Validar: Gatilho ativo no console
   - Depende de: 2.1, 3.1, 4.1, 4.2
 

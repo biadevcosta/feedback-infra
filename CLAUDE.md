@@ -32,7 +32,7 @@ Nomes em inglês porque são campos literais no JSON da API e no código Java do
 - LGPD: não registrar e-mails nem o texto das avaliações nos logs.
 
 ## Estrutura
-`modules/lambda-function/`, `dynamodb.tf`, `cognito.tf`, `api.tf`, `lambdas.tf`, `ses.tf`, `scheduler.tf`, `monitoring.tf`, `iam.tf`, `providers.tf`, `variables.tf`, `outputs.tf`, `.github/workflows/` (ci.yml e deploy.yml), `docs/` (diagramas) e `README.md`.
+`modules/lambda-function/`, `dynamodb.tf`, `cognito.tf`, `api.tf`, `lambdas.tf`, `ses.tf`, `scheduler.tf`, `iam.tf`, `providers.tf`, `variables.tf`, `outputs.tf`, `.github/workflows/` (ci.yml e deploy.yml), `docs/` (diagramas) e `README.md`.
 Commitar o `.terraform.lock.hcl`.
 
 ## Regras de infra
@@ -48,6 +48,7 @@ Commitar o `.terraform.lock.hcl`.
 - Concorrência das Lambdas: a conta tem limite de 10 execuções simultâneas, então não usar `reserved_concurrent_executions` (a AWS exige 10 livres). O teto de tráfego fica no throttling da API.
 - DynamoDB: on-demand (sem custo fixo ocioso), KMS com a chave gerenciada pela AWS `aws/dynamodb` (`server_side_encryption { enabled = true }` sem `kms_key_arn`; sem mensalidade, ao contrário de uma chave própria de ~US$ 1/mês), PITR e Streams NEW_IMAGE. Notificação: filtro do event source mapping (INSERT e urgency high) e fila SQS como destino de falha.
 - SES: cada e-mail precisa ser confirmado pelo link recebido (conta em sandbox).
+- Monitoramento: sem SNS, alarmes nem dashboard (custo). Usar só as métricas e os logs padrão do CloudWatch (Lambda e API).
 - EventBridge usa UTC: segunda 8h em Brasília é `cron(0 11 ? * MON *)`.
 - Ao rodar `plan`, resuma o que será criado, alterado ou destruído e o custo estimado de cada item novo.
 - Expor em `outputs.tf`: nomes e ARNs das funções, URL da API e IDs do Cognito.

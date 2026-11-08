@@ -125,33 +125,19 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
   - Validar: Política limitada ao ARN da função
   - Depende de: 1.4, 5.2
 
-### Fase 6 - Monitoramento e segurança
+### Fase 6 - Segurança
 
-- [ ] **6.1** monitoring.tf: tópico SNS de alertas e inscrição dos e-mails dos admins
-  - Validar: Inscrição confirmada
-  - Depende de: 1.7
-
-- [ ] **6.2** Alarmes do CloudWatch: erros e throttles das 3 Lambdas, 5xx da API e mensagens na DLQ
-  - Validar: Alarmes criados e ligados ao SNS
-  - Depende de: 6.1, 5.2, 4.3, 3.3
-
-- [ ] **6.3** Dashboard simples do CloudWatch (invocações e erros)
-  - Validar: Dashboard mostra os dados das funções
-  - Depende de: 6.2
+Tarefas 6.1 (SNS), 6.2 (alarmes), 6.3 (dashboard) e 6.5 (teste de alarme) removidas por custo (alarmes ~US$ 0,10/mês cada, dashboard US$ 3/mês). O monitoramento usa só as métricas e os logs padrão do CloudWatch (Lambda e API), mostrados no vídeo e descritos no README.
 
 - [ ] **6.4** Revisar o IAM (sem permissões com curinga além do necessário) e conferir a criptografia com KMS (chave aws/dynamodb)
   - Validar: Checklist de segurança sem pendências
   - Depende de: 5.8
 
-- [ ] **6.5** Teste: forçar um erro numa Lambda e receber o alerta por e-mail
-  - Validar: E-mail de alarme chega
-  - Depende de: 6.2
-
 ### Fase 7 - Documentação e entrega
 
 - [ ] **7.1** Atualizar o diagrama (Terraform no lugar de CloudFormation) e exportar em PNG
   - Validar: PNG aparece no README
-  - Depende de: 6.5
+  - Depende de: 6.4
 
 - [ ] **7.2** README: arquitetura, modelo de cloud, instruções de deploy, monitoramento e segurança, com índice dos 4 repositórios
   - Validar: Alguém de fora consegue seguir e reproduzir o deploy
@@ -196,7 +182,7 @@ Concluir junto com o time; marque aqui quando feitas.
 
 - [ ] **7.6** Escrever o roteiro do vídeo seguindo os fluxos F1 a F4 do diagrama
   - Validar: Roteiro aprovado pelo grupo
-  - Depende de: 6.5
+  - Depende de: 6.4
 
 - [ ] **7.7** Gravar o vídeo: arquitetura, repositórios, esteiras, funções ativas, configurações e os fluxos funcionando
   - Validar: Vídeo cobre todos os itens da aba Entrega

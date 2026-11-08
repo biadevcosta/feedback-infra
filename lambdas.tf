@@ -10,9 +10,11 @@ module "ingestion" {
   # Must match the class in feedback-lambda-ingestion
   handler = "com.feedback.ingestion.IngestionHandler::handleRequest"
 
-  # Simple PutItem call: low memory and timeout are enough
-  memory_size = 256
-  timeout     = 5
+  # Java cold start: CPU scales with memory, and the first SDK call (class loading,
+  # TLS) timed out at 256 MB / 5 s. Warm calls take milliseconds; the timeout only
+  # matters on cold start and stays below the 30 s API Gateway limit
+  memory_size = 512
+  timeout     = 20
 
   environment_variables = {
     TABLE_NAME = aws_dynamodb_table.evaluations.name
@@ -49,8 +51,9 @@ module "notification" {
   # Must match the class in feedback-lambda-notification
   handler = "com.feedback.notification.NotificationHandler::handleRequest"
 
-  memory_size = 256
-  timeout     = 10
+  # Two SDK clients (Cognito and SES) on a Java cold start: same reasoning as ingestion
+  memory_size = 512
+  timeout     = 30
 
   environment_variables = {
     USER_POOL_ID = aws_cognito_user_pool.main.id
@@ -143,8 +146,8 @@ module "report" {
   # Must match the class in feedback-lambda-report
   handler = "com.feedback.report.ReportHandler::handleRequest"
 
-  # Runs once a week; a few paginated queries plus one email per admin
-  memory_size = 256
+  # Runs once a week, always a cold start with three SDK clients; more memory = more CPU
+  memory_size = 512
   timeout     = 30
 
   environment_variables = {

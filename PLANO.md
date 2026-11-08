@@ -93,10 +93,10 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
 
 ### Fase 4 - Notificação
 
-- [ ] **4.1** ses.tf: identidade do remetente e dos e-mails dos admins
+- [x] **4.1** ses.tf: identidade do remetente e dos e-mails dos admins
   - Validar: Todos os e-mails aparecem como Verified no SES
   - Depende de: 1.7
-  - Obs: Cada pessoa precisa clicar no link de confirmação (conta em sandbox). Identidades já criadas; falta a confirmação dos e-mails
+  - Obs: Cada pessoa precisa clicar no link de confirmação (conta em sandbox). Todos os e-mails confirmados (Verified)
 
 - [x] **4.2** Fila SQS (DLQ) para falhas da notificação
   - Validar: Fila criada

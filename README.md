@@ -45,7 +45,7 @@ Index **`by-day`**: partition key `day`, sort key `submittedAt`.
 ```
 modules/lambda-function/
 dynamodb.tf  cognito.tf  api.tf  lambdas.tf
-ses.tf  scheduler.tf  monitoring.tf  iam.tf
+ses.tf  scheduler.tf  iam.tf
 providers.tf  variables.tf  outputs.tf
 .github/workflows/      # ci.yml and deploy.yml
 docs/                   # diagrams

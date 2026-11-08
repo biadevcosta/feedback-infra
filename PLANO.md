@@ -85,7 +85,7 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
 - [ ] **3.3** api.tf: HTTP API, JWT authorizer (Cognito), rota POST /evaluations e throttling (1 req/s, rajada de 1, no stage $default)
   - Validar: Chamada sem token retorna 401; várias chamadas seguidas retornam 429
   - Depende de: 2.2, 3.2
-  - Obs: Já aplicada; falta validar. Com rajada de 1, bastam 2 chamadas seguidas para o 429 (sem loop, por custo)
+  - Obs: Já aplicada; a validação (401 e 429) fica junto com o teste ponta a ponta 3.8. Com rajada de 1, bastam 2 chamadas seguidas para o 429 (sem loop, por custo)
 
 - [x] **3.4** Role OIDC do repositório feedback-lambda-ingestion, só com lambda:UpdateFunctionCode nesta função
   - Validar: Política limitada ao ARN da função
@@ -112,16 +112,16 @@ Como pedir ao Claude: `Execute a tarefa X.Y do PLANO.md` (uma por sessão; use /
 
 ### Fase 5 - Relatório
 
-- [ ] **5.1** scheduler.tf: regra do EventBridge para segunda 8h de Brasília (cron(0 11 ? * MON *), em UTC) e permissão de invocação
+- [x] **5.1** scheduler.tf: regra do EventBridge para segunda 8h de Brasília (cron(0 11 ? * MON *), em UTC) e permissão de invocação
   - Validar: Regra ativa no console
   - Depende de: 1.7
   - Obs: O cron do EventBridge é sempre em UTC
 
-- [ ] **5.2** Função de relatório com permissões Query no índice by-day e ses:SendEmail
+- [x] **5.2** Função de relatório com permissões Query no índice by-day e ses:SendEmail
   - Validar: Função criada só com as permissões necessárias
   - Depende de: 2.1, 3.1, 4.1, 5.1
 
-- [ ] **5.3** Role OIDC do repositório feedback-lambda-report, só com lambda:UpdateFunctionCode nesta função
+- [x] **5.3** Role OIDC do repositório feedback-lambda-report, só com lambda:UpdateFunctionCode nesta função
   - Validar: Política limitada ao ARN da função
   - Depende de: 1.4, 5.2
 
@@ -168,7 +168,7 @@ Concluir junto com o time; marque aqui quando feitas.
   - Depende de: 0.1
   - Obs: Nos 3 repositórios de função, o check obrigatório da esteira entra quando o ci-cd.yml existir
 
-- [ ] **3.8** Teste ponta a ponta: sem token (401), com token (grava) e score fora do intervalo (400)
+- [ ] **3.8** Teste ponta a ponta: sem token (401), 2 chamadas seguidas (429), com token (grava) e score fora do intervalo (400)
   - Validar: Item aparece no DynamoDB
   - Depende de: 3.3, 3.7
 

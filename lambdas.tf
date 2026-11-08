@@ -7,8 +7,8 @@ module "ingestion" {
   function_name = "${var.project}-ingestion"
   description   = "Receives POST /evaluations and writes the evaluation to DynamoDB"
 
-  # TODO: update to match the real class once feedback-lambda-ingestion defines it
-  handler = "com.feedback.ingestion.CreateEvaluationHandler::handleRequest"
+  # Must match the class in feedback-lambda-ingestion
+  handler = "com.feedback.ingestion.IngestionHandler::handleRequest"
 
   # Simple PutItem call: low memory and timeout are enough
   memory_size = 256
@@ -46,16 +46,16 @@ module "notification" {
   function_name = "${var.project}-notification"
   description   = "Sends an urgency email to admins when a high-urgency evaluation is inserted"
 
-  # TODO: update to match the real class once feedback-lambda-notification defines it
-  handler = "com.feedback.notification.UrgencyAlertHandler::handleRequest"
+  # Must match the class in feedback-lambda-notification
+  handler = "com.feedback.notification.NotificationHandler::handleRequest"
 
   memory_size = 256
   timeout     = 10
 
   environment_variables = {
-    USER_POOL_ID      = aws_cognito_user_pool.main.id
-    ADMINS_GROUP_NAME = aws_cognito_user_group.admins.name
-    SENDER_EMAIL      = var.ses_sender_email
+    USER_POOL_ID = aws_cognito_user_pool.main.id
+    ADMIN_GROUP  = aws_cognito_user_group.admins.name
+    SES_SENDER   = var.ses_sender_email
   }
 }
 

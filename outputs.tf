@@ -77,3 +77,13 @@ output "function_pipeline_role_arns" {
   description = "Role assumed by each function repository pipeline (lambda:UpdateFunctionCode only)"
   value       = { for repo, role in aws_iam_role.function_pipeline : repo => role.arn }
 }
+
+output "report_function_name" {
+  description = "Name of the weekly report Lambda function"
+  value       = module.report.function_name
+}
+
+output "report_function_arn" {
+  description = "ARN of the weekly report Lambda function"
+  value       = module.report.function_arn
+}

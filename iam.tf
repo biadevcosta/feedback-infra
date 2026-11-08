@@ -112,6 +112,7 @@ locals {
   function_repos = {
     feedback-lambda-ingestion    = module.ingestion.function_arn
     feedback-lambda-notification = module.notification.function_arn
+    feedback-lambda-report       = module.report.function_arn
   }
 }
 

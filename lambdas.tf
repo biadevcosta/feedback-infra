@@ -131,3 +131,57 @@ resource "aws_iam_role_policy" "notification" {
   role   = module.notification.role_name
   policy = data.aws_iam_policy_document.notification.json
 }
+
+# Weekly report: queries the last 7 days on the by-day index and emails the admins.
+# Invoked by the EventBridge rule in scheduler.tf
+module "report" {
+  source = "./modules/lambda-function"
+
+  function_name = "${var.project}-report"
+  description   = "Builds the weekly evaluation report and emails it to admins"
+
+  # Must match the class in feedback-lambda-report
+  handler = "com.feedback.report.ReportHandler::handleRequest"
+
+  # Runs once a week; a few paginated queries plus one email per admin
+  memory_size = 256
+  timeout     = 30
+
+  environment_variables = {
+    TABLE_NAME   = aws_dynamodb_table.evaluations.name
+    INDEX_NAME   = "by-day"
+    USER_POOL_ID = aws_cognito_user_pool.main.id
+    ADMIN_GROUP  = aws_cognito_user_group.admins.name
+    SES_SENDER   = var.ses_sender_email
+    DAYS         = "7"
+  }
+}
+
+data "aws_iam_policy_document" "report" {
+  # Query only on the by-day index; no Scan and no access to the base table
+  statement {
+    actions   = ["dynamodb:Query"]
+    resources = ["${aws_dynamodb_table.evaluations.arn}/index/by-day"]
+  }
+
+  # Find the admins group members to email
+  statement {
+    actions   = ["cognito-idp:ListUsersInGroup"]
+    resources = [aws_cognito_user_pool.main.arn]
+  }
+
+  # Same SES sandbox rule as the notification function: sender and recipients
+  statement {
+    actions = ["ses:SendEmail"]
+    resources = concat(
+      [aws_ses_email_identity.sender.arn],
+      [for identity in aws_ses_email_identity.admins : identity.arn],
+    )
+  }
+}
+
+resource "aws_iam_role_policy" "report" {
+  name   = "report-permissions"
+  role   = module.report.role_name
+  policy = data.aws_iam_policy_document.report.json
+}

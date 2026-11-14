@@ -18,9 +18,9 @@ The video covers the architecture, the 4 repositories and an end-to-end test of 
 | Repository | Responsibility |
 |---|---|
 | **feedback-infra** (this one) | Terraform for all infrastructure |
-| [feedback-lambda-ingestion](../feedback-lambda-ingestion) | Receives the evaluation and writes it to DynamoDB |
-| [feedback-lambda-notification](../feedback-lambda-notification) | Notifies admins by email when urgency is high |
-| [feedback-lambda-report](../feedback-lambda-report) | Generates and sends the weekly report |
+| [feedback-lambda-ingestion](https://github.com/biadevcosta/feedback-lambda-ingestion) | Receives the evaluation and writes it to DynamoDB |
+| [feedback-lambda-notification](https://github.com/biadevcosta/feedback-lambda-notification) | Notifies admins by email when urgency is high |
+| [feedback-lambda-report](https://github.com/biadevcosta/feedback-lambda-report) | Generates and sends the weekly report |
 
 ## Architecture
 
@@ -116,55 +116,6 @@ Required GitHub configuration:
 | `ADMIN_EMAILS` | secret | JSON list of admin addresses |
 | `AWS_PLAN_ROLE_ARN` | variable | Output `infra_plan_role_arn` |
 | `AWS_APPLY_ROLE_ARN` | variable | Output `infra_apply_role_arn` |
-
-## Deploy from scratch
-
-1. **First apply (local, once).** The pipeline roles don't exist yet, so the first apply uses your own AWS credentials (admin) and a Terraform Cloud login:
-
-   ```bash
-   # terraform.tfvars (gitignored)
-   # ses_sender_email = "sender@example.com"
-   # admin_emails     = ["admin@example.com"]
-
-   terraform login
-   terraform init
-   terraform apply
-   ```
-
-2. **Verify the emails in SES.** SES sends a verification link to the sender and to each admin; click each one (the account is in the SES sandbox).
-3. **Configure GitHub.**
-   - `feedback-infra`: the secrets and variables in [Pipelines](#pipelines).
-   - Each lambda repository: variable `AWS_ROLE_ARN` with its entry from `terraform output function_pipeline_role_arns`.
-4. **Publish the function code.** Push to `main` (or re-run the workflow) in the 3 lambda repositories.
-5. **Create the users** (admins also need a verified email in SES to receive emails):
-
-   ```bash
-   POOL=$(terraform output -raw cognito_user_pool_id)
-
-   aws cognito-idp admin-create-user --user-pool-id "$POOL" --username student@example.com      --user-attributes Name=email,Value=student@example.com Name=email_verified,Value=true      --message-action SUPPRESS
-   aws cognito-idp admin-set-user-password --user-pool-id "$POOL" --username student@example.com      --password '<password>' --permanent
-   aws cognito-idp admin-add-user-to-group --user-pool-id "$POOL" --username student@example.com      --group-name students
-   ```
-
-   Repeat with `--group-name admins` for each administrator.
-
-6. **Test the API:**
-
-   ```bash
-   CLIENT=$(terraform output -raw cognito_app_client_id)
-   API=$(terraform output -raw api_url)
-
-   TOKEN=$(aws cognito-idp admin-initiate-auth --user-pool-id "$POOL" --client-id "$CLIENT"      --auth-flow ADMIN_USER_PASSWORD_AUTH      --auth-parameters USERNAME=student@example.com,PASSWORD='<password>'      --query AuthenticationResult.IdToken --output text)
-
-   curl -X POST "${API%/}/evaluations" -H "Authorization: Bearer $TOKEN"      -H "Content-Type: application/json" -d '{"description": "Class audio was cut off", "score": 2}'
-   ```
-
-   A score from 0 to 3 triggers the urgency email. To run the weekly report without waiting for Monday:
-
-   ```bash
-   aws lambda invoke --function-name feedback-report out.json
-   ```
-
-After this, every change goes through the pipelines: pull request → `plan`, merge to `main` → `apply`.
+| `AWS_ROLE_ARN` | variable (each lambda repository) | Its entry in output `function_pipeline_role_arns` |
 
 Region `sa-east-1`. All resources use the `feedback-` prefix and the tags `Project=feedback`, `Environment=dev`, `ManagedBy=terraform`.

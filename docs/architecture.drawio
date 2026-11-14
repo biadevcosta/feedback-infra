@@ -1,70 +1,242 @@
-<mxfile host="app.diagrams.net"><diagram name="Arquitetura e Fluxos" id="arq-feedback-v4"><mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2500" pageHeight="1100" math="0" shadow="0"><root><mxCell id="0" /><mxCell id="1" parent="0" /><mxCell id="a_cloud" value="AWS Cloud" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud_alt;strokeColor=#232F3E;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#232F3E;dashed=0;" vertex="1" parent="1"><mxGeometry x="130" y="20" width="1000" height="840" as="geometry" /></mxCell><mxCell id="a_acc" value="Conta AWS" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_account;strokeColor=#CD2264;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#CD2264;dashed=0;" vertex="1" parent="1"><mxGeometry x="150" y="60" width="960" height="780" as="geometry" /></mxCell><mxCell id="a_reg" value="Região sa-east-1 (São Paulo)" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_region;strokeColor=#147EBA;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#147EBA;dashed=1;" vertex="1" parent="1"><mxGeometry x="170" y="100" width="920" height="730" as="geometry" /></mxCell><mxCell id="a_app" value="Aplicação serverless (o que o time constrói)" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#ED7100;fontColor=#ED7100;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontStyle=1;fontSize=13;arcSize=3;" vertex="1" parent="1"><mxGeometry x="190" y="275" width="880" height="370" as="geometry" /></mxCell><mxCell id="a_aluno" value="Aluno" style="shape=mxgraph.aws4.user;fillColor=#232F3E;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontColor=#232F3E;aspect=fixed;" vertex="1" parent="1"><mxGeometry x="30" y="320" width="60" height="60" as="geometry" /></mxCell><mxCell id="a_admin" value="Administradores" style="shape=mxgraph.aws4.user;fillColor=#232F3E;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontColor=#232F3E;aspect=fixed;" vertex="1" parent="1"><mxGeometry x="1170" y="520" width="60" height="60" as="geometry" /></mxCell><mxCell id="a_cognito" value="Cognito User Pool&#10;(grupos students e admins)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;labelPosition=right;verticalLabelPosition=middle;verticalAlign=middle;align=left;spacingLeft=6;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cognito;" vertex="1" parent="1"><mxGeometry x="210" y="150" width="60" height="60" as="geometry" /></mxCell><mxCell id="a_kms" value="KMS&#10;(chave gerenciada pela AWS)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;labelPosition=right;verticalLabelPosition=middle;verticalAlign=middle;align=left;spacingLeft=6;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.key_management_service;" vertex="1" parent="1"><mxGeometry x="630" y="150" width="60" height="60" as="geometry" /></mxCell><mxCell id="a_sqs" value="SQS (DLQ)&#10;falhas de envio" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;labelPosition=left;verticalLabelPosition=middle;verticalAlign=middle;align=right;spacingRight=6;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sqs;" vertex="1" parent="1"><mxGeometry x="1000" y="150" width="60" height="60" as="geometry" /></mxCell><mxCell id="a_api" value="API Gateway&#10;POST /evaluations" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" vertex="1" parent="1"><mxGeometry x="210" y="320" width="60" height="60" as="geometry" /></mxCell><mxCell id="a_ing" value="Lambda ingestão" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" vertex="1" parent="1"><mxGeometry x="420" y="320" width="60" height="60" as="geometry" /></mxCell><mxCell id="a_dyn" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#C925D1;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" vertex="1" parent="1"><mxGeometry x="630" y="320" width="60" height="60" as="geometry" /></mxCell><mxCell id="a_not" value="Lambda notificação" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;labelPosition=right;verticalLabelPosition=middle;verticalAlign=middle;align=left;spacingLeft=6;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" vertex="1" parent="1"><mxGeometry x="840" y="320" width="60" height="60" as="geometry" /></mxCell><mxCell id="a_dyn_t" value="DynamoDB&#10;tabela Evaluations&#10;(Streams ligado)" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=12;fontColor=#232F3E;" vertex="1" parent="1"><mxGeometry x="696" y="278" width="130" height="45" as="geometry" /></mxCell><mxCell id="a_eb" value="EventBridge&#10;(cron semanal)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eventbridge;" vertex="1" parent="1"><mxGeometry x="420" y="520" width="60" height="60" as="geometry" /></mxCell><mxCell id="a_rel" value="Lambda relatório" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" vertex="1" parent="1"><mxGeometry x="630" y="520" width="60" height="60" as="geometry" /></mxCell><mxCell id="a_ses" value="SES&#10;(envio de e-mails)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.simple_email_service;" vertex="1" parent="1"><mxGeometry x="840" y="520" width="60" height="60" as="geometry" /></mxCell><mxCell id="a_iam" value="IAM Roles&#10;(uma por Lambda)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;" vertex="1" parent="1"><mxGeometry x="420" y="700" width="60" height="60" as="geometry" /></mxCell><mxCell id="a_cw" value="CloudWatch&#10;logs" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch_2;" vertex="1" parent="1"><mxGeometry x="630" y="700" width="60" height="60" as="geometry" /></mxCell><mxCell id="a_gh" value="GitHub Actions&#10;(OIDC, 4 repositórios)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;" vertex="1" parent="1"><mxGeometry x="-250" y="440" width="150" height="50" as="geometry" /></mxCell><mxCell id="ae1" value="F1-1 login" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="a_aluno" target="a_cognito"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae2" value="F1-2 POST + token" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="a_aluno" target="a_api"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae3" value="F1-3 valida token" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;" edge="1" parent="1" source="a_api" target="a_cognito"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae4" value="F1-4 invoca" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="a_api" target="a_ing"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae5" value="F1-5 PutItem" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="a_ing" target="a_dyn"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae6" value="F2-1 Streams" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="a_dyn" target="a_not"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae18" value="F2-2 lista e-mails dos admins" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;exitX=0.2;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="a_not" target="a_cognito"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="852" y="135" /><mxPoint x="240" y="135" /></Array></mxGeometry></mxCell><mxCell id="ae7" value="F2-3 envia" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="a_not" target="a_ses"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae8" value="falhas de envio" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;exitX=0.8;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="a_not" target="a_sqs"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="888" y="250" /><mxPoint x="1030" y="250" /></Array></mxGeometry></mxCell><mxCell id="ae9" value="F3-1 segunda" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="a_eb" target="a_rel"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae10" value="F3-2 Query" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="a_rel" target="a_dyn"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae11" value="F3-3 relatório" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="a_rel" target="a_ses"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae12" value="F2-4 e F3-4 e-mail" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="a_ses" target="a_admin"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae13" value="criptografia" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;" edge="1" parent="1" source="a_kms" target="a_dyn"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae20" value="permissões mínimas" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.2955;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="a_iam" target="a_app"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae21" value="logs" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;exitX=0.5341;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="a_app" target="a_cw"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="a_title" value="ARQUITETURA (visão tradicional)" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1"><mxGeometry x="130" y="-20" width="500" height="30" as="geometry" /></mxCell><mxCell id="f_title" value="FLUXOS (passo a passo, referência F1 a F3)" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#232F3E;" vertex="1" parent="1"><mxGeometry x="1270" y="-20" width="600" height="30" as="geometry" /></mxCell><mxCell id="f_lane1" value="FLUXO 1 - O aluno envia um feedback" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#9AA0A6;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontStyle=1;fontSize=14;fontColor=#232F3E;arcSize=3;" vertex="1" parent="1">
-          <mxGeometry x="1270.0" y="20" width="1060" height="270" as="geometry" />
-        </mxCell>
-        <mxCell id="f_aluno1" value="Aluno" style="shape=mxgraph.aws4.user;fillColor=#232F3E;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontColor=#232F3E;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="1310.0" y="150" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="f_cognito" value="Cognito (base de usuários)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;labelPosition=right;verticalLabelPosition=middle;verticalAlign=middle;align=left;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cognito;" vertex="1" parent="1">
-          <mxGeometry x="1550.0" y="50" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="f_apigw" value="API Gateway&#10;POST /evaluations" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" vertex="1" parent="1">
-          <mxGeometry x="1550.0" y="150" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="f_lambda_ing" value="Lambda ingestão&#10;valida e grava" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" vertex="1" parent="1">
-          <mxGeometry x="1790.0" y="150" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="f_dynamo1" value="DynamoDB&#10;guarda a avaliação" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#C925D1;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" vertex="1" parent="1">
-          <mxGeometry x="2030.0" y="150" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="f_f1e1" value="1. faz login e recebe o token" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#F8F9FA;" edge="1" parent="1" source="f_aluno1" target="f_cognito"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="f_f1e2" value="2. envia a avaliação + token" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" edge="1" parent="1" source="f_aluno1" target="f_apigw"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="f_f1e3" value="3. confere o token" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;dashed=1;fontSize=11;labelBackgroundColor=#F8F9FA;" edge="1" parent="1" source="f_apigw" target="f_cognito"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="f_f1e4" value="4. chama a função" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" edge="1" parent="1" source="f_apigw" target="f_lambda_ing"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="f_f1e5" value="5. grava (PutItem)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" edge="1" parent="1" source="f_lambda_ing" target="f_dynamo1"><mxGeometry relative="1" as="geometry" /></mxCell>
-
-        <mxCell id="f_lane2" value="FLUXO 2 - Feedback crítico gera e-mail de urgência (automático)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#9AA0A6;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontStyle=1;fontSize=14;fontColor=#232F3E;arcSize=5;" vertex="1" parent="1">
-          <mxGeometry x="1270.0" y="310" width="1060" height="180" as="geometry" />
-        </mxCell>
-        <mxCell id="f_dynamo2" value="DynamoDB&#10;(mesma tabela)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#C925D1;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" vertex="1" parent="1">
-          <mxGeometry x="1310.0" y="360" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="f_lambda_not" value="Lambda notificação&#10;só urgência alta" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" vertex="1" parent="1">
-          <mxGeometry x="1550.0" y="360" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="f_ses2" value="SES&#10;envia o e-mail" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.simple_email_service;" vertex="1" parent="1">
-          <mxGeometry x="1790.0" y="360" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="f_admin2" value="Administradores" style="shape=mxgraph.aws4.user;fillColor=#232F3E;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontColor=#232F3E;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="2030.0" y="360" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="f_f2e1" value="1. novo registro dispara (Streams)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" edge="1" parent="1" source="f_dynamo2" target="f_lambda_not"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="f_f2e2" value="2. busca os admins no Cognito e envia" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" edge="1" parent="1" source="f_lambda_not" target="f_ses2"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="f_f2e3" value="3. chega na caixa de entrada" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" edge="1" parent="1" source="f_ses2" target="f_admin2"><mxGeometry relative="1" as="geometry" /></mxCell>
-
-        <mxCell id="f_lane3" value="FLUXO 3 - Relatório semanal (automático, toda segunda)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#9AA0A6;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontStyle=1;fontSize=14;fontColor=#232F3E;arcSize=3;" vertex="1" parent="1">
-          <mxGeometry x="1270.0" y="510" width="1060" height="290" as="geometry" />
-        </mxCell>
-        <mxCell id="f_dynamo3" value="DynamoDB&#10;(mesma tabela)" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#C925D1;strokeColor=none;dashed=0;labelPosition=right;verticalLabelPosition=middle;verticalAlign=middle;align=left;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" vertex="1" parent="1">
-          <mxGeometry x="1550.0" y="545" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="f_eventbridge" value="EventBridge&#10;agenda semanal" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eventbridge;" vertex="1" parent="1">
-          <mxGeometry x="1310.0" y="680" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="f_lambda_rel" value="Lambda relatório&#10;média e contagens" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" vertex="1" parent="1">
-          <mxGeometry x="1550.0" y="680" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="f_ses3" value="SES&#10;envia o relatório" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.simple_email_service;" vertex="1" parent="1">
-          <mxGeometry x="1790.0" y="680" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="f_admin3" value="Administradores" style="shape=mxgraph.aws4.user;fillColor=#232F3E;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontColor=#232F3E;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="2030.0" y="680" width="60" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="f_f3e1" value="1. dispara toda segunda" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" edge="1" parent="1" source="f_eventbridge" target="f_lambda_rel"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="f_f3e2" value="2. lê as avaliações da semana" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" edge="1" parent="1" source="f_lambda_rel" target="f_dynamo3"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="f_f3e3" value="3. envia o relatório" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" edge="1" parent="1" source="f_lambda_rel" target="f_ses3"><mxGeometry relative="1" as="geometry" /></mxCell>
-        <mxCell id="f_f3e4" value="4. chega na caixa de entrada" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" edge="1" parent="1" source="f_ses3" target="f_admin3"><mxGeometry relative="1" as="geometry" /></mxCell>
-
-        <mxCell id="f_note" value="Em todos os fluxos:&#10;- IAM: cada Lambda tem só as permissões de que precisa&#10;- KMS: criptografia dos dados no DynamoDB (chave gerenciada pela AWS)&#10;- Deploy: GitHub Actions aplica o Terraform (infra, state no Terraform Cloud) e atualiza o código de cada função" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontColor=#232F3E;" vertex="1" parent="1">
-          <mxGeometry x="1270.0" y="830" width="1060" height="80" as="geometry" />
-        </mxCell>
-      <mxCell id="a_tf" value="Terraform&#10;(repositório feedback-infra)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7B42BC;strokeColor=#4F2A82;fontColor=#FFFFFF;fontStyle=1;fontSize=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="-250" y="560" width="150" height="50" as="geometry" /></mxCell><mxCell id="a_s3" value="Terraform Cloud&#10;(state)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9DFF5;strokeColor=#7B42BC;fontColor=#4F2A82;fontStyle=1;fontSize=12;arcSize=12;" vertex="1" parent="1"><mxGeometry x="-250" y="700" width="150" height="50" as="geometry" /></mxCell><mxCell id="ae22" value="push na main (feedback-infra)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="a_gh" target="a_tf"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae23" value="terraform apply: cria a infra" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.8378;entryDx=0;entryDy=0;" edge="1" parent="1" source="a_tf" target="a_app"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae24" value="state" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="a_tf" target="a_s3"><mxGeometry relative="1" as="geometry" /></mxCell><mxCell id="ae25" value="push na main (3 repos):&#10;update-function-code" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5135;entryDx=0;entryDy=0;" edge="1" parent="1" source="a_gh" target="a_app"><mxGeometry relative="1" as="geometry" /></mxCell></root></mxGraphModel></diagram></mxfile>
+<mxfile host="65bd71144e">
+    <diagram name="Arquitetura e Fluxos" id="arq-feedback-v4">
+        <mxGraphModel dx="4614" dy="1579" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2500" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="a_cloud" parent="1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_cloud_alt;strokeColor=#232F3E;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#232F3E;dashed=0;" value="AWS Cloud" vertex="1">
+                    <mxGeometry height="840" width="1000" x="130" y="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_acc" parent="1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_account;strokeColor=#CD2264;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#CD2264;dashed=0;" value="Conta AWS" vertex="1">
+                    <mxGeometry height="780" width="960" x="150" y="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_reg" parent="1" style="points=[[0,0],[0.25,0],[0.5,0],[0.75,0],[1,0],[1,0.25],[1,0.5],[1,0.75],[1,1],[0.75,1],[0.5,1],[0.25,1],[0,1],[0,0.75],[0,0.5],[0,0.25]];outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=13;fontStyle=0;container=0;pointerEvents=0;collapsible=0;recursiveResize=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_region;strokeColor=#147EBA;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#147EBA;dashed=1;" value="Região sa-east-1 (São Paulo)" vertex="1">
+                    <mxGeometry height="730" width="920" x="170" y="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_app" parent="1" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=none;strokeColor=#ED7100;fontColor=#ED7100;verticalAlign=top;align=left;spacingLeft=10;spacingTop=4;fontStyle=1;fontSize=13;arcSize=3;" value="Aplicação serverless (o que o time constrói)" vertex="1">
+                    <mxGeometry height="370" width="880" x="190" y="275" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_aluno" parent="1" style="shape=mxgraph.aws4.user;fillColor=#232F3E;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontColor=#232F3E;aspect=fixed;" value="Aluno" vertex="1">
+                    <mxGeometry height="60" width="60" x="30" y="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_admin" parent="1" style="shape=mxgraph.aws4.user;fillColor=#232F3E;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontColor=#232F3E;aspect=fixed;" value="Administradores" vertex="1">
+                    <mxGeometry height="60" width="60" x="1170" y="520" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_cognito" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;labelPosition=right;verticalLabelPosition=middle;verticalAlign=middle;align=left;spacingLeft=6;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cognito;" value="Cognito User Pool&#xa;(grupos students e admins)" vertex="1">
+                    <mxGeometry height="60" width="60" x="210" y="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_kms" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;labelPosition=right;verticalLabelPosition=middle;verticalAlign=middle;align=left;spacingLeft=6;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.key_management_service;" value="KMS&#xa;(chave gerenciada pela AWS)" vertex="1">
+                    <mxGeometry height="60" width="60" x="630" y="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_sqs" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;labelPosition=left;verticalLabelPosition=middle;verticalAlign=middle;align=right;spacingRight=6;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.sqs;" value="SQS (DLQ)&#xa;falhas de envio" vertex="1">
+                    <mxGeometry height="60" width="60" x="1000" y="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_api" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" value="API Gateway&#xa;POST /evaluations" vertex="1">
+                    <mxGeometry height="60" width="60" x="210" y="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_ing" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" value="Lambda ingestão" vertex="1">
+                    <mxGeometry height="60" width="60" x="420" y="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_dyn" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#C925D1;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" value="" vertex="1">
+                    <mxGeometry height="60" width="60" x="630" y="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_not" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;labelPosition=right;verticalLabelPosition=middle;verticalAlign=middle;align=left;spacingLeft=6;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" value="Lambda notificação" vertex="1">
+                    <mxGeometry height="60" width="60" x="840" y="320" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_dyn_t" parent="1" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;fontSize=12;fontColor=#232F3E;" value="DynamoDB&#xa;tabela Evaluations&#xa;(Streams ligado)" vertex="1">
+                    <mxGeometry height="45" width="130" x="696" y="278" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_eb" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eventbridge;" value="EventBridge&#xa;(cron semanal)" vertex="1">
+                    <mxGeometry height="60" width="60" x="420" y="520" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_rel" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" value="Lambda relatório" vertex="1">
+                    <mxGeometry height="60" width="60" x="630" y="520" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_ses" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.simple_email_service;" value="SES&#xa;(envio de e-mails)" vertex="1">
+                    <mxGeometry height="60" width="60" x="840" y="520" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_iam" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.identity_and_access_management;" value="IAM Roles&#xa;(uma por Lambda)" vertex="1">
+                    <mxGeometry height="60" width="60" x="420" y="700" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_cw" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cloudwatch_2;" value="CloudWatch&#xa;logs" vertex="1">
+                    <mxGeometry height="60" width="60" x="630" y="700" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_gh" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#232F3E;fontColor=#232F3E;fontSize=12;" value="GitHub Actions&#xa;(OIDC, 4 repositórios)" vertex="1">
+                    <mxGeometry height="50" width="150" x="-250" y="440" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae1" edge="1" parent="1" source="a_aluno" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="a_cognito" value="F1-1 login">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae2" edge="1" parent="1" source="a_aluno" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" target="a_api" value="F1-2 POST + token">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae3" edge="1" parent="1" source="a_api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;" target="a_cognito" value="F1-3 valida token">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae4" edge="1" parent="1" source="a_api" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" target="a_ing" value="F1-4 invoca">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae5" edge="1" parent="1" source="a_ing" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" target="a_dyn" value="F1-5 PutItem">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae6" edge="1" parent="1" source="a_dyn" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" target="a_not" value="F2-1 Streams">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae18" edge="1" parent="1" source="a_not" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;exitX=0.2;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="a_cognito" value="F2-2 lista e-mails dos admins">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="852" y="135"/>
+                            <mxPoint x="240" y="135"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ae7" edge="1" parent="1" source="a_not" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" target="a_ses" value="F2-3 envia">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae8" edge="1" parent="1" source="a_not" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;exitX=0.8;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="a_sqs" value="falhas de envio">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="888" y="250"/>
+                            <mxPoint x="1030" y="250"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="ae9" edge="1" parent="1" source="a_eb" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" target="a_rel" value="F3-1 segunda">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae10" edge="1" parent="1" source="a_rel" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" target="a_dyn" value="F3-2 Query">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae11" edge="1" parent="1" source="a_rel" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" target="a_ses" value="F3-3 relatório">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae12" edge="1" parent="1" source="a_ses" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;" target="a_admin" value="F2-4 e F3-4 e-mail">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae13" edge="1" parent="1" source="a_kms" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;" target="a_dyn" value="criptografia">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae20" edge="1" parent="1" source="a_iam" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.2955;entryY=1;entryDx=0;entryDy=0;" target="a_app" value="permissões mínimas">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae21" edge="1" parent="1" source="a_app" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;exitX=0.5341;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="a_cw" value="logs">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#232F3E;" value="ARQUITETURA (visão tradicional)" vertex="1">
+                    <mxGeometry height="30" width="500" x="130" y="-20" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_title" parent="1" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;fontStyle=1;fontColor=#232F3E;" value="FLUXOS (passo a passo, referência F1 a F3)" vertex="1">
+                    <mxGeometry height="30" width="600" x="1270" y="-20" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_lane1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#9AA0A6;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontStyle=1;fontSize=14;fontColor=#232F3E;arcSize=3;" value="FLUXO 1 - O aluno envia um feedback" vertex="1">
+                    <mxGeometry height="270" width="1060" x="1270" y="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_aluno1" parent="1" style="shape=mxgraph.aws4.user;fillColor=#232F3E;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontColor=#232F3E;aspect=fixed;" value="Aluno" vertex="1">
+                    <mxGeometry height="60" width="60" x="1310" y="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_cognito" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;labelPosition=right;verticalLabelPosition=middle;verticalAlign=middle;align=left;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.cognito;" value="Cognito (base de usuários)" vertex="1">
+                    <mxGeometry height="60" width="60" x="1550" y="50" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_apigw" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.api_gateway;" value="API Gateway&#xa;POST /evaluations" vertex="1">
+                    <mxGeometry height="60" width="60" x="1550" y="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_lambda_ing" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" value="Lambda ingestão&#xa;valida e grava" vertex="1">
+                    <mxGeometry height="60" width="60" x="1790" y="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_dynamo1" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#C925D1;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" value="DynamoDB&#xa;guarda a avaliação" vertex="1">
+                    <mxGeometry height="60" width="60" x="2030" y="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_f1e1" edge="1" parent="1" source="f_aluno1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=11;labelBackgroundColor=#F8F9FA;" target="f_cognito" value="1. faz login e recebe o token">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_f1e2" edge="1" parent="1" source="f_aluno1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" target="f_apigw" value="2. envia a avaliação + token">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_f1e3" edge="1" parent="1" source="f_apigw" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;dashed=1;fontSize=11;labelBackgroundColor=#F8F9FA;" target="f_cognito" value="3. confere o token">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_f1e4" edge="1" parent="1" source="f_apigw" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" target="f_lambda_ing" value="4. chama a função">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_f1e5" edge="1" parent="1" source="f_lambda_ing" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" target="f_dynamo1" value="5. grava (PutItem)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_lane2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#9AA0A6;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontStyle=1;fontSize=14;fontColor=#232F3E;arcSize=5;" value="FLUXO 2 - Feedback crítico gera e-mail de urgência (automático)" vertex="1">
+                    <mxGeometry height="180" width="1060" x="1270" y="310" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_dynamo2" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#C925D1;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" value="DynamoDB&#xa;(mesma tabela)" vertex="1">
+                    <mxGeometry height="60" width="60" x="1310" y="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_lambda_not" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" value="Lambda notificação&#xa;só urgência alta" vertex="1">
+                    <mxGeometry height="60" width="60" x="1550" y="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_ses2" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.simple_email_service;" value="SES&#xa;envia o e-mail" vertex="1">
+                    <mxGeometry height="60" width="60" x="1790" y="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_admin2" parent="1" style="shape=mxgraph.aws4.user;fillColor=#232F3E;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontColor=#232F3E;aspect=fixed;" value="Administradores" vertex="1">
+                    <mxGeometry height="60" width="60" x="2030" y="360" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_f2e1" edge="1" parent="1" source="f_dynamo2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" target="f_lambda_not" value="1. novo registro dispara (Streams)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_f2e2" edge="1" parent="1" source="f_lambda_not" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" target="f_ses2" value="2. busca os admins no Cognito e envia">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_f2e3" edge="1" parent="1" source="f_ses2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" target="f_admin2" value="3. chega na caixa de entrada">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_lane3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F9FA;strokeColor=#9AA0A6;verticalAlign=top;align=left;spacingLeft=12;spacingTop=6;fontStyle=1;fontSize=14;fontColor=#232F3E;arcSize=3;" value="FLUXO 3 - Relatório semanal (automático, toda segunda)" vertex="1">
+                    <mxGeometry height="290" width="1060" x="1270" y="510" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_dynamo3" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#C925D1;strokeColor=none;dashed=0;labelPosition=right;verticalLabelPosition=middle;verticalAlign=middle;align=left;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.dynamodb;" value="DynamoDB&#xa;(mesma tabela)" vertex="1">
+                    <mxGeometry height="60" width="60" x="1550" y="545" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_eventbridge" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#E7157B;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.eventbridge;" value="EventBridge&#xa;agenda semanal" vertex="1">
+                    <mxGeometry height="60" width="60" x="1310" y="680" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_lambda_rel" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#ED7100;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.lambda;" value="Lambda relatório&#xa;média e contagens" vertex="1">
+                    <mxGeometry height="60" width="60" x="1550" y="680" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_ses3" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#DD344C;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.simple_email_service;" value="SES&#xa;envia o relatório" vertex="1">
+                    <mxGeometry height="60" width="60" x="1790" y="680" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_admin3" parent="1" style="shape=mxgraph.aws4.user;fillColor=#232F3E;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontColor=#232F3E;aspect=fixed;" value="Administradores" vertex="1">
+                    <mxGeometry height="60" width="60" x="2030" y="680" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_f3e1" edge="1" parent="1" source="f_eventbridge" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" target="f_lambda_rel" value="1. dispara toda segunda">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_f3e2" edge="1" parent="1" source="f_lambda_rel" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" target="f_dynamo3" value="2. lê as avaliações da semana">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_f3e3" edge="1" parent="1" source="f_lambda_rel" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" target="f_ses3" value="3. envia o relatório">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_f3e4" edge="1" parent="1" source="f_ses3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#F8F9FA;" target="f_admin3" value="4. chega na caixa de entrada">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="f_note" parent="1" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;fontSize=12;fontColor=#232F3E;" value="Em todos os fluxos:&#xa;- IAM: cada Lambda tem só as permissões de que precisa&#xa;- KMS: criptografia dos dados no DynamoDB (chave gerenciada pela AWS)&#xa;- Deploy: GitHub Actions aplica o Terraform (infra, state no Terraform Cloud) e atualiza o código de cada função" vertex="1">
+                    <mxGeometry height="80" width="1060" x="1270" y="830" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_tf" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#7B42BC;strokeColor=#4F2A82;fontColor=#FFFFFF;fontStyle=1;fontSize=12;arcSize=12;" value="Terraform&#xa;(repositório feedback-infra)" vertex="1">
+                    <mxGeometry height="50" width="150" x="-250" y="560" as="geometry"/>
+                </mxCell>
+                <mxCell id="a_s3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9DFF5;strokeColor=#7B42BC;fontColor=#4F2A82;fontStyle=1;fontSize=12;arcSize=12;" value="Terraform Cloud&#xa;(state)" vertex="1">
+                    <mxGeometry height="50" width="150" x="-250" y="700" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae22" edge="1" parent="1" source="a_gh" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="a_tf" value="push na main (feedback-infra)">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae23" edge="1" parent="1" source="a_tf" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.8378;entryDx=0;entryDy=0;" target="a_app" value="terraform apply: cria a infra">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae24" edge="1" parent="1" source="a_tf" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="a_s3" value="state">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="ae25" edge="1" parent="1" source="a_gh" style="edgeStyle=orthogonalEdgeStyle;rounded=1;endArrow=block;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5135;entryDx=0;entryDy=0;" target="a_app" value="push na main (3 repos):&#xa;update-function-code">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

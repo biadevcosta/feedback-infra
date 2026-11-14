@@ -5,6 +5,14 @@ Infrastructure (Terraform) for the **Class Feedback Platform** — Tech Challeng
 Students submit `POST /evaluations` with `{"description": string, "score": int 0..10}`.
 Administrators receive an urgent-feedback email (low scores) and a weekly report.
 
+## 🎥 Presentation video
+
+**▶️ Watch on YouTube: https://www.youtube.com/watch?v=_GKjHTAEPfk**
+
+[![Presentation video](https://img.youtube.com/vi/_GKjHTAEPfk/hqdefault.jpg)](https://www.youtube.com/watch?v=_GKjHTAEPfk)
+
+The video covers the architecture, the 4 repositories and an end-to-end test of the flows.
+
 ## The 4 repositories
 
 | Repository | Responsibility |
